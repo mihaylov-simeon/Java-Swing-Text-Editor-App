@@ -24,6 +24,8 @@ public class TextEditor extends JFrame implements ActionListener {
     JMenuItem printFileItem;
     JMenuItem exitAppItem;
 
+// ------ Graphical User Interface ------
+
     TextEditor() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -104,6 +106,11 @@ public class TextEditor extends JFrame implements ActionListener {
         this.add(scrollPane);
         this.setVisible(true);
     }
+    
+    // ------ Graphical User Interface ------
+
+    // ------ Functionality ------
+    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fontColorButton) {
@@ -197,4 +204,6 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         });
     }
+        // ------ Functionality ------
+
 }
