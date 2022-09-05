@@ -30,7 +30,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setTitle("Your text editor!");
-        this.setSize(500, 680);
+        this.setSize(600, 730);
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(0x333333));
@@ -51,7 +51,7 @@ public class TextEditor extends JFrame implements ActionListener {
         textArea.setCaretColor(Color.LIGHT_GRAY);
 
         scrollPane = new JScrollPane(textArea);
-        scrollPane.setPreferredSize(new Dimension(450, 550));
+        scrollPane.setPreferredSize(new Dimension(getWidth() - 100, getHeight() - 140));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
 
         fontSizeSpinner = new JSpinner();
@@ -129,7 +129,7 @@ public class TextEditor extends JFrame implements ActionListener {
         if (e.getSource() == openFileItem) {
             JFileChooser chooser = new JFileChooser();
             chooser.setCurrentDirectory(new File("Desktop"));
-            FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Text Files", "txt", "HTML files");
+            FileNameExtensionFilter fileFilter = new FileNameExtensionFilter("Text Files", "txt", "html");
             chooser.setFileFilter(fileFilter);
 
             int response = chooser.showOpenDialog(null);
