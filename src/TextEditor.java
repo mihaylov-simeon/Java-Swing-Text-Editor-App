@@ -1,9 +1,6 @@
 import javax.swing.*;
 import javax.swing.border.Border;
-import javax.swing.event.DocumentEvent;
-import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -37,7 +34,8 @@ public class TextEditor extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(0x333333));
-        this.setResizable(true);
+        this.setResizable(false);
+
 
         textArea = new JTextArea();
         textArea.setLineWrap(true);
