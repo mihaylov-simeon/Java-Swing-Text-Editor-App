@@ -182,6 +182,19 @@ public class TextEditor extends JFrame implements ActionListener {
         }
 
         // ------ MENU OPTIONS ALGORITHM ------
-
+        
+         textArea.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                textArea.setForeground(Color.LIGHT_GRAY);
+            }
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if (textArea.getText().contains("Enter your text here.")) {
+                    textArea.setText("");
+                    textArea.setEnabled(true);
+                }
+            }
+        });
     }
 }
