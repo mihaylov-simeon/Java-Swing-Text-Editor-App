@@ -157,7 +157,7 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
 
-        // Set file extension manually (.txt, .html, etc.);
+        // Set file extension manually (.txt, .html)
 
         if (e.getSource() == saveFileItem) {
             JFileChooser chooser = new JFileChooser();
