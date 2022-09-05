@@ -60,7 +60,7 @@ public class TextEditor extends JFrame implements ActionListener {
                 Font.PLAIN, (Integer) fontSizeSpinner.getValue())));
         fontSizeSpinner.setToolTipText("Change the size of the text.");
 
-        fontColorButton = new JButton("Text color");
+        fontColorButton = new JButton("Text color"); 
         fontColorButton.addActionListener(this);
         fontColorButton.setToolTipText("Change the color of the text.");
         fontColorButton.setBackground(new Color(0x606060));
