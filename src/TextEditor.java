@@ -136,7 +136,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
             int response = chooser.showOpenDialog(null);
 
-            if (response == JFileChooser.APPROVE_OPTION) {
+            if (response == JFileChooser.APPROVE_OPTION) { 
                 File file = new File(chooser.getSelectedFile().getAbsolutePath());
                 Scanner fileIn = null;
 
