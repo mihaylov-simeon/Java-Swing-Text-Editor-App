@@ -1,9 +1,14 @@
 import javax.swing.*;
 import javax.swing.border.Border;
+import javax.swing.event.DocumentEvent;
+import javax.swing.event.DocumentListener;
 import javax.swing.filechooser.FileNameExtensionFilter;
+import javax.swing.text.Element;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
@@ -24,8 +29,6 @@ public class TextEditor extends JFrame implements ActionListener {
     JMenuItem printFileItem;
     JMenuItem exitAppItem;
 
-// ------ Graphical User Interface ------
-
     TextEditor() {
 
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -34,24 +37,24 @@ public class TextEditor extends JFrame implements ActionListener {
         this.setLayout(new FlowLayout());
         this.setLocationRelativeTo(null);
         this.getContentPane().setBackground(new Color(0x333333));
+        this.setResizable(true);
 
         textArea = new JTextArea();
         textArea.setLineWrap(true);
         textArea.setWrapStyleWord(true);
-        textArea.setFont(new Font("Calibri", Font.PLAIN,25));
+        textArea.setFont(new Font("Calibri", Font.PLAIN,20));
         textArea.setBackground(new Color(0x494949));
         textArea.setForeground(Color.WHITE);
         Border border = BorderFactory.createLineBorder(Color.LIGHT_GRAY);
         textArea.setBorder(BorderFactory.createCompoundBorder(border,
                 BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         textArea.setEditable(true);
-        textArea.setToolTipText("Click to type.");
+        textArea.setText("Enter your text here.");
         textArea.setCaretColor(Color.LIGHT_GRAY);
 
         scrollPane = new JScrollPane(textArea);
         scrollPane.setPreferredSize(new Dimension(450, 550));
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
-
 
         fontSizeSpinner = new JSpinner();
         fontSizeSpinner.setPreferredSize(new Dimension(50, 25));
@@ -60,7 +63,7 @@ public class TextEditor extends JFrame implements ActionListener {
                 Font.PLAIN, (Integer) fontSizeSpinner.getValue())));
         fontSizeSpinner.setToolTipText("Change the size of the text.");
 
-        fontColorButton = new JButton("Text color"); 
+        fontColorButton = new JButton("Text color");
         fontColorButton.addActionListener(this);
         fontColorButton.setToolTipText("Change the color of the text.");
         fontColorButton.setBackground(new Color(0x606060));
@@ -106,11 +109,7 @@ public class TextEditor extends JFrame implements ActionListener {
         this.add(scrollPane);
         this.setVisible(true);
     }
-    
-    // ------ Graphical User Interface ------
 
-    // ------ Functionality ------
-    
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == fontColorButton) {
@@ -127,6 +126,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
         if (e.getSource() == newFileItem) {
             textArea.setText("");
+            textArea.setForeground(Color.LIGHT_GRAY);
         }
         if (e.getSource() == openFileItem) {
             JFileChooser chooser = new JFileChooser();
@@ -136,7 +136,7 @@ public class TextEditor extends JFrame implements ActionListener {
 
             int response = chooser.showOpenDialog(null);
 
-            if (response == JFileChooser.APPROVE_OPTION) { 
+            if (response == JFileChooser.APPROVE_OPTION) {
                 File file = new File(chooser.getSelectedFile().getAbsolutePath());
                 Scanner fileIn = null;
 
@@ -157,7 +157,7 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         }
 
-        // Set file extension manually (.txt, .html)
+        // Set file extension manually (.txt, .html, etc.);
 
         if (e.getSource() == saveFileItem) {
             JFileChooser chooser = new JFileChooser();
@@ -189,11 +189,15 @@ public class TextEditor extends JFrame implements ActionListener {
         }
 
         // ------ MENU OPTIONS ALGORITHM ------
-        
-         textArea.addMouseListener(new MouseAdapter() {
+
+        textArea.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseEntered(MouseEvent e) {
-                textArea.setForeground(Color.LIGHT_GRAY);
+                if (textArea.getText().contains("Enter your text here.")) {
+                    textArea.setForeground(Color.LIGHT_GRAY);
+                } else {
+                    textArea.getText();
+                }
             }
             @Override
             public void mouseClicked(MouseEvent e) {
@@ -204,6 +208,4 @@ public class TextEditor extends JFrame implements ActionListener {
             }
         });
     }
-        // ------ Functionality ------
-
 }
